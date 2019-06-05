@@ -29,5 +29,51 @@
 
             return $query->result_array();
         }
+
+        function ingresar()
+        {
+           $identificacion = $this->input->post('identificacion');
+           $clave      = $this->input->post('clave');
+           $nombre     = $this->input->post('nombre');
+           $apellidos   = $this->input->post('apellidos');
+           $telefono   = $this->input->post('telefono');
+           $email      = $this->input->post('email');
+           $direccion  = $this->input->post('direccion');
+           $ciudad     = $this->input->post('ciudad');
+
+           $identificacion = $this->security->xss_clean($identificacion);
+           $clave      = $this->security->xss_clean($clave);
+           $nombre     = $this->security->xss_clean($nombre);
+           $apellidos   = $this->security->xss_clean($apellidos);
+           $telefono   = $this->security->xss_clean($telefono);
+           $email      = $this->security->xss_clean($email);
+           $direccion  = $this->security->xss_clean($direccion);
+           $ciudad     = $this->security->xss_clean($ciudad);
+
+           $query = $this->db->get_where('pacientes', array('identificacion'  => $identificacion));
+           $result = $query->result_array();
+
+           if(count($result) > 0)
+           {
+               $mensaje = 'Ya se encuentra registrado';
+           }else{
+            //guardo datos con el vector
+                $vector = array(
+                    "identificacion" => $identificacion,
+                    "clave"      => md5($clave),
+                    "nombre"     => $nombre,
+                    "apellidos"   => $apellidos,
+                    "telefono"   => $telefono,
+                    "email"      => $email,
+                    "direccion"  => $direccion,
+                    "ciudad"     => $ciudad
+                );
+
+                //insertar datos a la bd en la tabla pacientes
+                $this->db->insert("pacientes", $vector);
+                $mensaje = "Se registró con éxito";
+           }
+           return $mensaje;
+        }
     }
 ?>

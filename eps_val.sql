@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-06-2019 a las 01:07:25
+-- Tiempo de generación: 06-06-2019 a las 01:10:53
 -- Versión del servidor: 10.1.32-MariaDB
 -- Versión de PHP: 7.2.5
 
@@ -87,12 +87,19 @@ CREATE TABLE `historiaclinica` (
 CREATE TABLE `medicos` (
   `pkid` bigint(20) NOT NULL,
   `nombre` varchar(255) NOT NULL,
-  `apellido` varchar(255) NOT NULL,
+  `apellidos` varchar(255) NOT NULL,
   `telefono` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `ciudad` varchar(255) NOT NULL,
   `identificacion` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `medicos`
+--
+
+INSERT INTO `medicos` (`pkid`, `nombre`, `apellidos`, `telefono`, `email`, `ciudad`, `identificacion`) VALUES
+(1, 'Pancha', 'Rancha', '6666666', 'pancha@gmail.com', 'Medellìn', '789');
 
 -- --------------------------------------------------------
 
@@ -118,7 +125,8 @@ CREATE TABLE `pacientes` (
 --
 
 INSERT INTO `pacientes` (`nombre`, `apellidos`, `telefono`, `email`, `direccion`, `ciudad`, `identificacion`, `observaciones`, `pkid`, `clave`) VALUES
-('valentina', 'Rua Carrillo', '3007865', 'valentina@gmail.com', 'calle 23e 34-12', 'Medellín', '123456', '', 1, 'e10adc3949ba59abbe56e057f20f883e');
+('valentina', 'Rua Carrillo', '3007865', 'valentina@gmail.com', 'calle 23e 34-12', 'Medellín', '123456', '', 1, 'e10adc3949ba59abbe56e057f20f883e'),
+('Pancho', 'Rancho', '3522222', 'pancho@gmail.com', 'calle 23 23-22', 'Medellín', '456', '', 4, '250cf8b51c773f3f8dc8b4be867a9a02');
 
 --
 -- Índices para tablas volcadas
@@ -182,13 +190,13 @@ ALTER TABLE `historiaclinica`
 -- AUTO_INCREMENT de la tabla `medicos`
 --
 ALTER TABLE `medicos`
-  MODIFY `pkid` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `pkid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `pacientes`
 --
 ALTER TABLE `pacientes`
-  MODIFY `pkid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `pkid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
